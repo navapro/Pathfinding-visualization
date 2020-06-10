@@ -46,5 +46,34 @@ function setup() {
 
 }
 
+function draw() {
+  let current;
 
+  if (openSet.length > 0) {
+    
+
+   
+  } else {
+    // nosolution
+    nosolution = true;
+    noLoop();
+  }
+  background(0);
+
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      grid[i][j].show(color(255));
+    }
+  }
+  for (let i = 0; i < closedSet.length; i++) {
+    closedSet[i].show(color(255, 69, 0));
+  }
+
+  for (let i = 0; i < openSet.length; i++) {
+    openSet[i].show(color(0, 255, 0));
+  }
+
+
+ 
+}
 
