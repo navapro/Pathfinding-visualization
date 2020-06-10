@@ -12,6 +12,19 @@ let closedSet = [];
 let startNode;
 let endNode;
 
+function Spot(i, j) {
+  this.i = i;
+  this.j = j;
+  this.f = 0;
+  this.g = 0;
+  this.h = 0;
+  this.neighbors = [];
+  this.previous = undefined;
+  this.wall = false;
+
+  if (random(1) < 0.3) {
+    this.wall = true;
+  }
 
 
 function setup() {
