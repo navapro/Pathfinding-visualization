@@ -14,8 +14,6 @@ let endNode;
 
 
 
-
-
 function setup() {
 
   // Create a 2D array using for loop.
