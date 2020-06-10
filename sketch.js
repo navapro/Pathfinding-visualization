@@ -25,7 +25,21 @@ function Spot(i, j) {
   if (random(1) < 0.3) {
     this.wall = true;
   }
+  this.show = function (col) {
 
+    if (this.wall) {
+      fill(0);
+    }
+    else {
+
+      fill(col);
+    }
+
+    noStroke();
+
+    rect(this.i * w, this.j * h, w - 1, h - 1);
+  }
+}
 
 function setup() {
 
