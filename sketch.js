@@ -150,6 +150,23 @@ function draw() {
   }
   background(0);
 
+  current = openSet[winner];
+
+  if (current === end) {
+
+    // Find the path.
+    let temp = current;
+    path.push(temp);
+    while (temp.previous) {
+      path.push(temp.previous);
+      temp = temp.previous;
+    }
+
+    console.log("done !!");
+    // noLoop();
+  }
+
+
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       grid[i][j].show(color(255));
