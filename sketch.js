@@ -136,10 +136,14 @@ function draw() {
   let current;
 
   if (openSet.length > 0) {
-    
+    let winner = 0;
 
-   
-  } else {
+    for (let i = 0; i < openSet.length; i++) {
+      if (openSet[i].f < openSet[winner].f) {
+        winner = i;
+      }
+    }
+  }{
     // nosolution
     nosolution = true;
     noLoop();
