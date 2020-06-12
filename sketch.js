@@ -93,33 +93,41 @@ function Spot(i, j) {
 }
 
 function setup() {
-
-  // Create a 2D array using for loop.
-  createCanvas(400, 400);
-
+  createCanvas(windowWidth,windowWidth);
+  console.log("A*");
 
   w = width / cols;
   h = height / rows;
 
   for (let i = 0; i < cols; i++) {
-    grid.push([]);
+    grid[i] = new Array(rows);
+
   }
 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
-      grid[i][j] = new Node(i, j);
+      grid[i][j] = new Spot(i, j);
     }
+
   }
 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       grid[i][j].addNeighbors(grid);
     }
-  }
-  startNode = grid[0][0];
-  endNode = grid[cols - 1][rows - 1];
 
-  openSet.push(startNode);
+  }
+
+
+  start = grid[0][0];
+  end = grid[cols - 1][rows - 1];
+
+  start.wall = false;
+  end.wall = false;
+
+  openSet.push(start);
+
+  console.log(grid);
 
 
 }
