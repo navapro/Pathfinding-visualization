@@ -165,7 +165,8 @@ function draw() {
     console.log("done !!");
     // noLoop();
   }
-
+  openSet.splice(winner, 1);
+  closedSet.push(current);
 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
