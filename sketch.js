@@ -174,6 +174,7 @@ function draw() {
     }
   }
   for (let i = 0; i < closedSet.length; i++) {
+    if (closedSet[i] ! = startNode)
     closedSet[i].show(color(255, 69, 0));
   }
 
