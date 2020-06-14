@@ -181,7 +181,21 @@ function draw() {
   for (let i = 0; i < openSet.length; i++) {
     openSet[i].show(color(0, 255, 0));
   }
-
+  if (showPath){
+    push();
+          
+    noFill();
+    stroke("blue");
+    strokeWeight(w / 3)
+    beginShape();
+    
+    for (let i = 0; i < path.length; i++) {
+      vertex(path[i].i * w + w / 2, path[i].j * h + h / 2);
+    }
+    endShape();
+    pop();
+    }
+    start.show(color(0, 255, 255));
 
  
 }
