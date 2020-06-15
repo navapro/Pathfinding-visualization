@@ -143,6 +143,31 @@ function draw() {
         winner = i;
       }
     }
+
+    if (current === end) {
+
+      // Find the path.
+      // let temp = current;
+      // path.push(temp);
+      // while (temp.previous) {
+      //   path.push(temp.previous);
+      //   temp = temp.previous;
+      // }
+
+      console.log("done !!");
+      done = true;
+      path = [];
+      var temp = current;
+      path.push(temp);
+      while (temp.previous) {
+        path.push(temp.previous);
+        temp = temp.previous;
+      }
+      
+      showPath = true;
+      
+      
+    }
   }{
     // nosolution
     nosolution = true;
