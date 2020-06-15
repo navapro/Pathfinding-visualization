@@ -177,9 +177,35 @@ function draw() {
       openSet.splice(winner, 1);
       closedSet.push(current);
 
+      var neighbors = current.neighbors;
+      for (let i = 0; i < neighbors.length; i++) {
+        let neighbor = neighbors[i];
 
+        if (!closedSet.includes(neighbor) && !neighbor.wall) {
+          let tempG = current.g + 1;
 
-      
+          let newPath = false;
+
+          if (openSet.includes(neighbor)) {
+            if (tempG < neighbor.g) {
+              neighbor.g = tempG;
+              newPath = true;
+            }
+          } else {
+            neighbor.g = tempG;
+            openSet.push(neighbor);
+            newPath = true;
+          }
+
+          if (newPath) {
+
+            
+            neighbor.f = neighbor.g + neighbor.h;
+            neighbor.previous = current;
+          }
+        }
+
+      }
 
     } else {
       // nosolution
