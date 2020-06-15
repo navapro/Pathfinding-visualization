@@ -199,7 +199,7 @@ function draw() {
 
           if (newPath) {
 
-            
+            neighbor.h = heuristic(neighbor, end);
             neighbor.f = neighbor.g + neighbor.h;
             neighbor.previous = current;
           }
@@ -239,4 +239,4 @@ function draw() {
     }
   }
 
-}
+ 
