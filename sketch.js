@@ -133,65 +133,66 @@ function setup() {
 }
 
 function draw() {
+
+
   let current;
+  if (startbool && !done) {
 
-  if (openSet.length > 0) {
-    let winner = 0;
+    if (openSet.length > 0) {
+      let winner = 0;
 
-    for (let i = 0; i < openSet.length; i++) {
-      if (openSet[i].f < openSet[winner].f) {
-        winner = i;
+      for (let i = 0; i < openSet.length; i++) {
+        if (openSet[i].f < openSet[winner].f) {
+          winner = i;
+        }
       }
+
+      current = openSet[winner];
+
+      if (current === end) {
+
+        // Find the path.
+        // let temp = current;
+        // path.push(temp);
+        // while (temp.previous) {
+        //   path.push(temp.previous);
+        //   temp = temp.previous;
+        // }
+
+        console.log("done !!");
+        done = true;
+        path = [];
+        var temp = current;
+        path.push(temp);
+        while (temp.previous) {
+          path.push(temp.previous);
+          temp = temp.previous;
+        }
+        
+        showPath = true;
+        
+        
+      }
+
+      openSet.splice(winner, 1);
+      closedSet.push(current);
+
+
+
+      
+
+    } else {
+      // nosolution
+      nosolution = true;
+      // noLoop();
     }
 
-    if (current === end) {
 
-      // Find the path.
-      // let temp = current;
-      // path.push(temp);
-      // while (temp.previous) {
-      //   path.push(temp.previous);
-      //   temp = temp.previous;
-      // }
-
-      console.log("done !!");
-      done = true;
-      path = [];
-      var temp = current;
-      path.push(temp);
-      while (temp.previous) {
-        path.push(temp.previous);
-        temp = temp.previous;
-      }
-      
-      showPath = true;
-      
-      
-    }
-  }{
-    // nosolution
-    nosolution = true;
-    noLoop();
+   
   }
   background(0);
 
-  current = openSet[winner];
 
-  if (current === end) {
-
-    // Find the path.
-    let temp = current;
-    path.push(temp);
-    while (temp.previous) {
-      path.push(temp.previous);
-      temp = temp.previous;
-    }
-
-    console.log("done !!");
-    // noLoop();
-  }
-  openSet.splice(winner, 1);
-  closedSet.push(current);
 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -199,29 +200,17 @@ function draw() {
     }
   }
   for (let i = 0; i < closedSet.length; i++) {
-    if (closedSet[i] != startNode)
-    closedSet[i].show(color(255, 69, 0));
+    if (closedSet[i] != start && closedSet[i] != end) {
+
+      closedSet[i].show(color(255, 69, 0));
+    }
   }
 
   for (let i = 0; i < openSet.length; i++) {
-    openSet[i].show(color(0, 255, 0));
+    if (openSet[i] != start && openSet[i] != end) {
+
+      openSet[i].show(color(0, 255, 0));
+    }
   }
-  if (showPath){
-    push();
-          
-    noFill();
-    stroke("blue");
-    strokeWeight(w / 3)
-    beginShape();
-    
-    for (let i = 0; i < path.length; i++) {
-      vertex(path[i].i * w + w / 2, path[i].j * h + h / 2);
-    }
-    endShape();
-    pop();
-    }
-    start.show(color(0, 255, 255));
 
- 
 }
-
