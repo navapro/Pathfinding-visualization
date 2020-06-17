@@ -99,7 +99,7 @@ function Spot(i, j) {
 }
 
 function setup() {
-  createCanvas(windowWidth,windowWidth);
+  createCanvas(windowHeight, windowHeight);
   console.log("A*");
 
   w = width / cols;
@@ -139,6 +139,27 @@ function setup() {
 }
 
 function draw() {
+
+  if (mouseIsPressed) {
+    let hit = collidePointRect(mouseX, mouseY, start.i * w, start.j * h, w, h);
+
+    if (hit) {
+      moveStart = true;
+    }
+    if (moveStart) {
+
+      let cellSize = width / cols;
+
+      let xCoord = floor(mouseX / cellSize);
+      let yCoord = floor(mouseY / cellSize);
+      start = grid[xCoord][yCoord];
+
+
+      openSet.splice(0, 1);
+      openSet.push(start);
+
+    }
+  }
 
 
   let current;
