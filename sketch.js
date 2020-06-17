@@ -1,3 +1,9 @@
+function heuristic(a, b) {
+  let d = dist(a.i, a.j, b.i, b.j);
+  //let d = abs(a.i - b.i) + abs(a.j - b.j);
+  return d;
+}
+
 // Project Title
 let cols = 25;
 let rows = 25;
