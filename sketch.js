@@ -5,18 +5,24 @@ function heuristic(a, b) {
 }
 
 // Project Title
+let showPath = false;
 let cols = 25;
 let rows = 25;
-let grid = [];
-let w;
-let h;
+let grid = new Array(cols);
+let start;
+let end;
+let w, h;
 let path = [];
+let nosolution = false;
+let done = false;
+
+let startbool = false;
+let moveStart = false;
+
 
 let openSet = [];
 let closedSet = [];
 
-let startNode;
-let endNode;
 
 function Spot(i, j) {
   this.i = i;
