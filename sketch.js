@@ -4,7 +4,6 @@ function heuristic(a, b) {
   return d;
 }
 
-// Project Title
 let showPath = false;
 let cols = 25;
 let rows = 25;
@@ -18,6 +17,7 @@ let done = false;
 
 let startbool = false;
 let moveStart = false;
+let moveEnd = false;
 
 
 let openSet = [];
@@ -38,23 +38,23 @@ function Spot(i, j) {
     this.wall = true;
   }
 
-  
+
 
   this.show = function (col) {
-    
-    
 
 
-    let hit = collidePointRect(mouseX,mouseY,this.i * w, this.j * h, w - 1, h - 1);
-  if (mouseIsPressed && hit){
-    if (mouseButton === LEFT) {
-      this.wall = true;
+
+
+    let hit = collidePointRect(mouseX, mouseY, this.i * w, this.j * h, w, h);
+    if (mouseIsPressed && hit && !moveStart){
+      if (mouseButton === LEFT) {
+        this.wall = true;
+      }
+      else if (mouseButton === RIGHT)  {
+        this.wall = false;
+        wall = false;
+      }
     }
-    else if (mouseButton === RIGHT)  {
-      this.wall = false;
-      wall = false;
-    }
-  }
 
     if (this.wall) {
       fill(0);
@@ -64,9 +64,10 @@ function Spot(i, j) {
       fill(col);
     }
 
-    noStroke();
 
-    rect(this.i * w, this.j * h, w - 1, h - 1);
+    strokeWeight(.4);
+
+    rect(this.i * w, this.j * h, w, h);
   }
   this.addNeighbors = function (grid) {
 
@@ -103,6 +104,7 @@ function Spot(i, j) {
   }
 
 }
+
 
 function setup() {
   createCanvas(windowHeight, windowHeight);
@@ -143,6 +145,7 @@ function setup() {
 
 
 }
+
 
 function draw() {
 
@@ -291,4 +294,16 @@ function draw() {
   }
   start.show(color(0, 255, 255));
 
+}
+
+function mouseReleased() {
+  moveStart = false;
+}
+
+
+function keyPressed() {
+  if (key == " ") {
+    startbool = true;
+
+  }
 }
