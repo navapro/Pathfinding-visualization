@@ -146,10 +146,12 @@ function setup() {
 
 function draw() {
 
-  if (mouseIsPressed) {
-    let hit = collidePointRect(mouseX, mouseY, start.i * w, start.j * h, w, h);
 
-    if (hit) {
+
+  if (mouseIsPressed) {
+    let StartTouched = collidePointRect(mouseX, mouseY, start.i * w, start.j * h, w, h);
+
+    if (StartTouched) {
       moveStart = true;
     }
     if (moveStart) {
@@ -166,6 +168,7 @@ function draw() {
 
     }
   }
+
 
 
   let current;
@@ -271,5 +274,21 @@ function draw() {
       openSet[i].show(color(0, 255, 0));
     }
   }
+
+  if (showPath){
+  push();
+        
+  noFill();
+  stroke("blue");
+  strokeWeight(w / 3)
+  beginShape();
+  
+  for (let i = 0; i < path.length; i++) {
+    vertex(path[i].i * w + w / 2, path[i].j * h + h / 2);
+  }
+  endShape();
+  pop();
+  }
+  start.show(color(0, 255, 255));
 
 }
