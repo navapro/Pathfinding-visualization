@@ -15,6 +15,7 @@ let path = [];
 let nosolution = false;
 let done = false;
 
+let released = false;
 let startbool = false;
 let moveStart = false;
 let moveEnd = false;
@@ -34,11 +35,6 @@ function Spot(i, j) {
   this.previous = undefined;
   this.wall = false;
 
-  if (random(1) < 0.0) {
-    this.wall = true;
-  }
-
-
 
   this.show = function (col) {
 
@@ -46,13 +42,20 @@ function Spot(i, j) {
 
 
     let hit = collidePointRect(mouseX, mouseY, this.i * w, this.j * h, w, h);
-    if (mouseIsPressed && hit && !moveStart){
+    if (mouseIsPressed && hit && !moveStart) {
       if (mouseButton === LEFT) {
-        this.wall = true;
+        // add button and mouse
+        if (this.wall && released) {
+          this.wall = false;
+
+        } else {
+
+          this.wall = true;
+          
+        }
       }
-      else if (mouseButton === RIGHT)  {
+      else if (mouseButton === RIGHT) {
         this.wall = false;
-        wall = false;
       }
     }
 
@@ -207,10 +210,10 @@ function draw() {
           path.push(temp.previous);
           temp = temp.previous;
         }
-        
+
         showPath = true;
-        
-        
+
+
       }
 
       openSet.splice(winner, 1);
@@ -253,7 +256,7 @@ function draw() {
     }
 
 
-   
+
   }
   background(0);
 
@@ -278,19 +281,19 @@ function draw() {
     }
   }
 
-  if (showPath){
-  push();
-        
-  noFill();
-  stroke("blue");
-  strokeWeight(w / 3)
-  beginShape();
-  
-  for (let i = 0; i < path.length; i++) {
-    vertex(path[i].i * w + w / 2, path[i].j * h + h / 2);
-  }
-  endShape();
-  pop();
+  if (showPath) {
+    push();
+
+    noFill();
+    stroke("blue");
+    strokeWeight(w / 3)
+    beginShape();
+
+    for (let i = 0; i < path.length; i++) {
+      vertex(path[i].i * w + w / 2, path[i].j * h + h / 2);
+    }
+    endShape();
+    pop();
   }
   start.show(color(0, 255, 255));
 
@@ -298,6 +301,7 @@ function draw() {
 
 function mouseReleased() {
   moveStart = false;
+  Released = true;
 }
 
 
