@@ -10,7 +10,7 @@ let rows = 25;
 let grid = new Array(cols);
 let start;
 let end;
-let w, h;
+let h;
 let path = [];
 let nosolution = false;
 let done = false;
@@ -41,7 +41,7 @@ function Spot(i, j) {
 
 
 
-    let hit = collidePointRect(mouseX, mouseY, this.i * w, this.j * h, w, h);
+    let hit = collidePointRect(mouseX, mouseY, this.i * h, this.j * h, h, h);
     if (mouseIsPressed && hit && !moveStart) {
       if (mouseButton === LEFT) {
         // add button and mouse
@@ -70,7 +70,7 @@ function Spot(i, j) {
 
     strokeWeight(.4);
 
-    rect(this.i * w, this.j * h, w, h);
+    rect(this.i * h, this.j * h, h, h);
   }
   this.addNeighbors = function (grid) {
 
@@ -110,10 +110,10 @@ function Spot(i, j) {
 
 
 function setup() {
-  createCanvas(windowHeight, windowHeight);
+  createCanvas(windowWidth,windowHeight);
   console.log("A*");
 
-  w = width / cols;
+  
   h = height / rows;
 
   for (let i = 0; i < cols; i++) {
@@ -155,7 +155,7 @@ function draw() {
 
 
   if (mouseIsPressed) {
-    let StartTouched = collidePointRect(mouseX, mouseY, start.i * w, start.j * h, w, h);
+    let StartTouched = collidePointRect(mouseX, mouseY, start.i * h, start.j * h, h, h);
 
     if (StartTouched) {
       moveStart = true;
@@ -286,11 +286,11 @@ function draw() {
 
     noFill();
     stroke("blue");
-    strokeWeight(w / 3)
+    strokeWeight(h / 3)
     beginShape();
 
     for (let i = 0; i < path.length; i++) {
-      vertex(path[i].i * w + w / 2, path[i].j * h + h / 2);
+      vertex(path[i].i * h + h / 2, path[i].j * h + h / 2);
     }
     endShape();
     pop();
