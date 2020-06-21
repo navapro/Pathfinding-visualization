@@ -154,11 +154,16 @@ function move(node) {
 
   let xCoord = floor(mouseX / cellSize);
   let yCoord = floor(mouseY / cellSize);
-  node = grid[xCoord][yCoord];
+
+  if (node == start) {
+    start = grid[xCoord][yCoord];
+  }
+  else {
+    end = grid[xCoord][yCoord];
+  }
 }
 
 function draw() {
-
 
 
   if (mouseIsPressed) {
