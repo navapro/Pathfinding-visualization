@@ -42,7 +42,7 @@ function Spot(i, j) {
 
 
     let hit = collidePointRect(mouseX, mouseY, this.i * h, this.j * h, h, h);
-    if (mouseIsPressed && hit && !moveStart) {
+    if (mouseIsPressed && hit && !moveStart && !moveEnd) {
       if (mouseButton === LEFT) {
         // add button and mouse
         if (this.wall && released) {
@@ -51,7 +51,7 @@ function Spot(i, j) {
         } else {
 
           this.wall = true;
-          
+
         }
       }
       else if (mouseButton === RIGHT) {
@@ -110,10 +110,10 @@ function Spot(i, j) {
 
 
 function setup() {
-  createCanvas(windowWidth,windowHeight);
+  createCanvas(windowWidth, windowHeight);
   console.log("A*");
 
-  
+
   h = height / rows;
 
   for (let i = 0; i < cols; i++) {
@@ -149,29 +149,37 @@ function setup() {
 
 }
 
+function move(node) {
+  let cellSize = height / cols;
+
+  let xCoord = floor(mouseX / cellSize);
+  let yCoord = floor(mouseY / cellSize);
+  node = grid[xCoord][yCoord];
+}
 
 function draw() {
 
 
 
   if (mouseIsPressed) {
-    let StartTouched = collidePointRect(mouseX, mouseY, start.i * h, start.j * h, h, h);
+    let startTouched = collidePointRect(mouseX, mouseY, start.i * h, start.j * h, h, h);
+    let endTouched = collidePointRect(mouseX, mouseY, end.i * h, end.j * h, h, h);
 
-    if (StartTouched) {
+    if (startTouched) {
       moveStart = true;
     }
+    if (endTouched) {
+      moveEnd = true;
+    }
+
+    if (moveEnd) {
+      move(end);
+    }
+
     if (moveStart) {
-
-      let cellSize = width / cols;
-
-      let xCoord = floor(mouseX / cellSize);
-      let yCoord = floor(mouseY / cellSize);
-      start = grid[xCoord][yCoord];
-
-
+      move(start);
       openSet.splice(0, 1);
       openSet.push(start);
-
     }
   }
 
@@ -295,12 +303,13 @@ function draw() {
     endShape();
     pop();
   }
+  end.show(color(0, 255, 255));
   start.show(color(0, 255, 255));
-
 }
 
 function mouseReleased() {
   moveStart = false;
+  moveEnd = false;
   Released = true;
 }
 
