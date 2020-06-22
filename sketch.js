@@ -149,24 +149,29 @@ function setup() {
 
 }
 
-function move(node) {
+function move() {
   let cellSize = height / cols;
 
   let xCoord = floor(mouseX / cellSize);
   let yCoord = floor(mouseY / cellSize);
 
-  if (node == start) {
-    start = grid[xCoord][yCoord];
-  }
-  else {
-    end = grid[xCoord][yCoord];
+  return grid[xCoord][yCoord];
+}
+
+function mouseCheck(){
+  let x = mouseX;
+  let y = mouseY;
+  let h = height;
+
+  if (x<h && x >0 && y >0 && y<h){
+    return true;
   }
 }
 
 function draw() {
 
 
-  if (mouseIsPressed) {
+  if (mouseIsPressed && mouseCheck()) {
     let startTouched = collidePointRect(mouseX, mouseY, start.i * h, start.j * h, h, h);
     let endTouched = collidePointRect(mouseX, mouseY, end.i * h, end.j * h, h, h);
 
@@ -178,11 +183,11 @@ function draw() {
     }
 
     if (moveEnd) {
-      move(end);
+      end = move();
     }
 
     if (moveStart) {
-      move(start);
+      start = move();
       openSet.splice(0, 1);
       openSet.push(start);
     }
