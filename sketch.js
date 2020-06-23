@@ -1,6 +1,6 @@
 function heuristic(a, b) {
   let d = dist(a.i, a.j, b.i, b.j);
-  //let d = abs(a.i - b.i) + abs(a.j - b.j);
+  // let d = abs(a.i - b.i) + abs(a.j - b.j);
   return d;
 }
 
@@ -211,14 +211,6 @@ function draw() {
 
       if (current === end) {
 
-        // Find the path.
-        // let temp = current;
-        // path.push(temp);
-        // while (temp.previous) {
-        //   path.push(temp.previous);
-        //   temp = temp.previous;
-        // }
-
         console.log("done !!");
         done = true;
         path = [];
@@ -243,6 +235,7 @@ function draw() {
 
         if (!closedSet.includes(neighbor) && !neighbor.wall) {
           let tempG = current.g + 1;
+          
 
           let newPath = false;
 
@@ -313,7 +306,7 @@ function draw() {
     endShape();
     pop();
   }
-  end.show(color(0, 255, 255));
+  end.show(color(255,0,255));
   start.show(color(0, 255, 255));
 }
 
