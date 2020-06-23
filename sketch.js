@@ -158,12 +158,12 @@ function move() {
   return grid[xCoord][yCoord];
 }
 
-function mouseCheck(){
+function mouseCheck() {
   let x = mouseX;
   let y = mouseY;
   let h = height;
 
-  if (x<h && x >0 && y >0 && y<h){
+  if (x < h && x > 0 && y > 0 && y < h) {
     return true;
   }
 }
