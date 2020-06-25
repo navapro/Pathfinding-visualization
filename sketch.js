@@ -235,7 +235,7 @@ function draw() {
 
         if (!closedSet.includes(neighbor) && !neighbor.wall) {
           let tempG = current.g + 1;
-          
+
 
           let newPath = false;
 
@@ -269,8 +269,8 @@ function draw() {
 
 
   }
-  background(0);
-
+  background(255);
+  showText();
 
 
   for (let i = 0; i < cols; i++) {
@@ -306,8 +306,9 @@ function draw() {
     endShape();
     pop();
   }
-  end.show(color(255,0,255));
+  end.show(color(255, 0, 255));
   start.show(color(0, 255, 255));
+
 }
 
 function mouseReleased() {
@@ -322,4 +323,29 @@ function keyPressed() {
     startbool = true;
 
   }
+}
+
+function showText() {
+
+  end.show(color(255, 0, 255));
+  start.show(color(0, 255, 255));
+  
+  push();
+  fill(0,255,255);
+  rect(height + height/2 - 2*h, height/20 - h/1.1 , h, h);
+  pop();
+  push();
+  fill(255,0, 255);
+  rect(height + height/2 - 2*h, height/10 - h/1.1, h, h);
+  pop();
+
+  fill (0);
+
+  textSize(32);
+  text('START NODE', height + height/2, height/20);
+  text('END NODE', height + height/2, height/10);
+  fill(0, 102, 153);
+  text('word', 10, 60);
+  fill(0, 102, 153, 51);
+  text('word', 10, 90);
 }
