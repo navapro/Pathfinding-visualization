@@ -111,7 +111,6 @@ function Spot(i, j) {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  console.log("A*");
 
 
   h = height / rows;
@@ -144,7 +143,7 @@ function setup() {
 
   openSet.push(start);
 
-  console.log(grid);
+  
 
 
 }
@@ -323,29 +322,76 @@ function keyPressed() {
     startbool = true;
 
   }
+
+  if (key == "r") {
+    startbool = false;
+    closedSet = [];
+    openSet = [];
+    path = [];
+    nosolution = false;
+    done = false;
+
+  //   grid =[];
+
+  // for (let i = 0; i < cols; i++) {
+  //   grid[i] = new Array(rows);
+
+  // }
+
+  // for (let i = 0; i < cols; i++) {
+  //   for (let j = 0; j < rows; j++) {
+  //     grid[i][j] = new Spot(i, j);
+  //   }
+
+  // }
+
+  // for (let i = 0; i < cols; i++) {
+  //   for (let j = 0; j < rows; j++) {
+  //     grid[i][j].addNeighbors(grid);
+  //   }
+
+  // }
+
+
+  start = grid[0][0];
+  end = grid[cols - 1][rows - 1];
+
+  start.wall = false;
+  end.wall = false;
+
+  openSet.push(start);
+
+  
+
+  }
 }
 
 function showText() {
 
   end.show(color(255, 0, 255));
   start.show(color(0, 255, 255));
-  
+
   push();
-  fill(0,255,255);
-  rect(height + height/2 - 2*h, height/20 - h/1.1 , h, h);
+  fill(0, 255, 255);
+  rect(height + height / 2 - 2 * h, height / 20 - h / 1.1, h, h);
   pop();
   push();
-  fill(255,0, 255);
-  rect(height + height/2 - 2*h, height/10 - h/1.1, h, h);
+  fill(255, 0, 255);
+  rect(height + height / 2 - 2 * h, height / 10 - h / 1.1, h, h);
   pop();
 
-  fill (0);
+  fill(0);
 
   textSize(32);
-  text('START NODE', height + height/2, height/20);
-  text('END NODE', height + height/2, height/10);
+  text('START NODE', height + height / 2, height / 20);
+  text('END NODE', height + height / 2, height / 10);
+  text('DIAGONAL PATH', height + height / 2, height / 5);
   fill(0, 102, 153);
   text('word', 10, 60);
   fill(0, 102, 153, 51);
   text('word', 10, 90);
 }
+
+
+// diagonal check box
+// slider for speed
