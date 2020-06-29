@@ -25,6 +25,13 @@ let moveEnd = false;
 let openSet = [];
 let closedSet = [];
 
+let unchecked,checked;
+
+function preload() {
+  unchecked = loadImage("assets/checkbox_unchecked.png");
+  checked = loadImage("assets/checkbox_checked.png");
+}
+
 
 function Spot(i, j) {
   this.i = i;
