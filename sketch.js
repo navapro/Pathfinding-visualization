@@ -333,29 +333,7 @@ function keyPressed() {
     path = [];
     nosolution = false;
     done = false;
-
-    //   grid =[];
-
-    // for (let i = 0; i < cols; i++) {
-    //   grid[i] = new Array(rows);
-
-    // }
-
-    // for (let i = 0; i < cols; i++) {
-    //   for (let j = 0; j < rows; j++) {
-    //     grid[i][j] = new Spot(i, j);
-    //   }
-
-    // }
-
-    // for (let i = 0; i < cols; i++) {
-    //   for (let j = 0; j < rows; j++) {
-    //     grid[i][j].addNeighbors(grid);
-    //   }
-
-    // }
-
-
+    
     start = grid[0][0];
     end = grid[cols - 1][rows - 1];
 
