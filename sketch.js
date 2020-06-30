@@ -25,12 +25,23 @@ let openSet = [];
 let closedSet = [];
 
 let unchecked, checked;
+let checkbox = false;
 
 function preload() {
   unchecked = loadImage("assets/checkbox_unchecked.png");
   checked = loadImage("assets/checkbox_checked.png");
 }
+function showImage() {
 
+  push();
+  imageMode(CORNER);
+  if (checkbox) {
+    image(checked, height + height / 2 - 2 * h, height / 5 - h / 1.1, h, h);
+  } else {
+    image(unchecked, height + height / 2 - 2 * h, height / 5 - h / 1.1, h, h);
+  }
+  pop();
+}
 
 function Spot(i, j) {
   this.i = i;
@@ -341,10 +352,8 @@ function keyPressed() {
     end.wall = false;
 
     openSet.push(start);
-
-
-
   }
+
 }
 
 function showText() {
@@ -360,7 +369,7 @@ function showText() {
   fill(255, 0, 255);
   rect(height + height / 2 - 2 * h, height / 10 - h / 1.1, h, h);
   pop();
-
+  showImage();
   fill(0);
 
   textSize(32);
@@ -373,5 +382,9 @@ function showText() {
   text('word', 10, 90);
 }
 
-// diagonal check box
+function mousePressed(){
+  if (collidePointRect(mouseX, mouseY, height + height / 2 - 2 * h, height / 5 - h / 1.1, h, h)) {
+    checkbox = !checkbox;
+  }
+}
 // slider for speed
