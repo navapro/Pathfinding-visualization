@@ -4,7 +4,6 @@ function heuristic(a, b) {
   return d;
 }
 
-let checkbox;
 let showPath = false;
 let cols = 25;
 let rows = 25;
@@ -98,7 +97,6 @@ function Spot(i, j) {
       this.neighbors.push(grid[i][j - 1]);
     }
 
-    if (checkbox.value()) {
       if (i > 0 && j > 0) {
         this.neighbors.push(grid[i - 1][j - 1]);
       }
@@ -111,7 +109,6 @@ function Spot(i, j) {
       if (i < cols - 1 && j < rows - 1) {
         this.neighbors.push(grid[i + 1][j + 1]);
       }
-    }
 
   }
 
@@ -151,10 +148,6 @@ function setup() {
   end.wall = false;
 
   openSet.push(start);
-
-  checkbox = createCheckbox('label', false);
-  checkbox.changed(myCheckedEvent);
-
 
 }
 
