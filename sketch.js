@@ -57,8 +57,6 @@ function Spot(i, j) {
   this.show = function (col) {
 
 
-
-
     let hit = collidePointRect(mouseX, mouseY, this.i * h, this.j * h, h, h);
     if (mouseIsPressed && hit && !moveStart && !moveEnd) {
       if (mouseButton === LEFT) {
@@ -107,6 +105,7 @@ function Spot(i, j) {
     if (j > 0) {
       this.neighbors.push(grid[i][j - 1]);
     }
+    if (checkbox){
 
     if (i > 0 && j > 0) {
       this.neighbors.push(grid[i - 1][j - 1]);
@@ -120,7 +119,7 @@ function Spot(i, j) {
     if (i < cols - 1 && j < rows - 1) {
       this.neighbors.push(grid[i + 1][j + 1]);
     }
-
+  }
   }
 
 }
@@ -150,7 +149,6 @@ function setup() {
     }
 
   }
-
 
   start = grid[0][0];
   end = grid[cols - 1][rows - 1];
@@ -385,6 +383,21 @@ function showText() {
 function mousePressed(){
   if (collidePointRect(mouseX, mouseY, height + height / 2 - 2 * h, height / 5 - h / 1.1, h, h)) {
     checkbox = !checkbox;
+
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        grid[i][j].neighbors = [];
+      }
+  
+    }
+  
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        grid[i][j].addNeighbors(grid);
+      }
+  
+    }
+  
   }
 }
 // slider for speed
