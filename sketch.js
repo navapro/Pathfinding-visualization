@@ -48,6 +48,7 @@ function Spot(i, j) {
   this.j = j;
   this.f = 0;
   this.g = 0;
+  this.gg = 0;
   this.h = 0;
   this.neighbors = [];
   this.previous = undefined;
@@ -109,15 +110,22 @@ function Spot(i, j) {
 
     if (i > 0 && j > 0) {
       this.neighbors.push(grid[i - 1][j - 1]);
+      this.neighbors[this.neighbors.length -1].gg = 1.5;
     }
     if (i < cols - 1 && j > 0) {
       this.neighbors.push(grid[i + 1][j - 1]);
+      this.neighbors[this.neighbors.length -1].gg = 1.5;
     }
     if (i > 0 && j < rows - 1) {
       this.neighbors.push(grid[i - 1][j + 1]);
+      this.neighbors[this.neighbors.length -1].gg = 1.5;
     }
     if (i < cols - 1 && j < rows - 1) {
       this.neighbors.push(grid[i + 1][j + 1]);
+     
+        this.neighbors[this.neighbors.length -1].gg = 1.5;
+        console.log("this done")
+      
     }
   }
   }
@@ -245,7 +253,7 @@ function draw() {
         let neighbor = neighbors[i];
 
         if (!closedSet.includes(neighbor) && !neighbor.wall) {
-          let tempG = current.g + 1;
+          let tempG = current.g + neighbor.gg;
 
 
           let newPath = false;
