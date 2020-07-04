@@ -106,28 +106,28 @@ function Spot(i, j) {
     if (j > 0) {
       this.neighbors.push(grid[i][j - 1]);
     }
-    if (checkbox){
+    if (checkbox) {
 
-    if (i > 0 && j > 0) {
-      this.neighbors.push(grid[i - 1][j - 1]);
-      this.neighbors[this.neighbors.length -1].gg = 0;// change it for diagonal search 
-    }
-    if (i < cols - 1 && j > 0) {
-      this.neighbors.push(grid[i + 1][j - 1]);
-      this.neighbors[this.neighbors.length -1].gg = 0;// change it for diagonal search 
-    }
-    if (i > 0 && j < rows - 1) {
-      this.neighbors.push(grid[i - 1][j + 1]);
-      this.neighbors[this.neighbors.length -1].gg = 0;// change it for diagonal search 
-    }
-    if (i < cols - 1 && j < rows - 1) {
-      this.neighbors.push(grid[i + 1][j + 1]);
-     
-        this.neighbors[this.neighbors.length -1].gg = 0;// change it for diagonal search 
+      if (i > 0 && j > 0) {
+        this.neighbors.push(grid[i - 1][j - 1]);
+        this.neighbors[this.neighbors.length - 1].gg = 0;// change it for diagonal search 
+      }
+      if (i < cols - 1 && j > 0) {
+        this.neighbors.push(grid[i + 1][j - 1]);
+        this.neighbors[this.neighbors.length - 1].gg = 0;// change it for diagonal search 
+      }
+      if (i > 0 && j < rows - 1) {
+        this.neighbors.push(grid[i - 1][j + 1]);
+        this.neighbors[this.neighbors.length - 1].gg = 0;// change it for diagonal search 
+      }
+      if (i < cols - 1 && j < rows - 1) {
+        this.neighbors.push(grid[i + 1][j + 1]);
+
+        this.neighbors[this.neighbors.length - 1].gg = 0;// change it for diagonal search 
         console.log("this done")
-      
+
+      }
     }
-  }
   }
 
 }
@@ -393,7 +393,7 @@ function showText() {
   text('word', 10, 90);
 }
 
-function mousePressed(){
+function mousePressed() {
   if (collidePointRect(mouseX, mouseY, height + height / 2 - 2 * h, height / 5 - h / 1.1, h, h)) {
     checkbox = !checkbox;
 
@@ -401,16 +401,15 @@ function mousePressed(){
       for (let j = 0; j < rows; j++) {
         grid[i][j].neighbors = [];
       }
-  
+
     }
-  
+
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         grid[i][j].addNeighbors(grid);
       }
-  
+
     }
-  
+
   }
 }
-// slider for speed
