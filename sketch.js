@@ -3,7 +3,7 @@ function heuristic(a, b) {
   // let d = abs(a.i - b.i) + abs(a.j - b.j);
   return d;
 }
-
+let slider;
 let showPath = false;
 let cols = 25;
 let rows = 25;
@@ -135,6 +135,9 @@ function Spot(i, j) {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  slider = createSlider(0, 255, 100);
+  slider.style('width', '80px');
 
 
   h = height / rows;
@@ -382,6 +385,8 @@ function showText() {
   text('START NODE', height + height / 2, height / 20);
   text('END NODE', height + height / 2, height / 10);
   text('DIAGONAL PATH', height + height / 2, height / 5);
+
+  slider.position(height + height / 2 - 2 * h, height / 3.5);
   fill(0, 102, 153);
   text('word', 10, 60);
   fill(0, 102, 153, 51);
