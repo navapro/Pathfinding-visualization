@@ -43,19 +43,23 @@ function showImage() {
   pop();
 }
 
-function Spot(i, j) {
-  this.i = i;
-  this.j = j;
-  this.f = 0;
-  this.g = 0;
-  this.gg = 0;
-  this.h = 0;
-  this.neighbors = [];
-  this.previous = undefined;
-  this.wall = false;
+class Spot {
 
+  constructor(i,j){
 
-  this.show = function (col) {
+    this.i = i;
+    this.j = j;
+    this.f = 0;
+    this.g = 0;
+    this.gg = 0;
+    this.h = 0;
+    this.neighbors = [];
+    this.previous = undefined;
+    this.wall = false;
+  }
+    
+
+  show(colr) {
 
 
     let hit = collidePointRect(mouseX, mouseY, this.i * h, this.j * h, h, h);
@@ -81,7 +85,7 @@ function Spot(i, j) {
     }
     else {
 
-      fill(col);
+      fill(colr);
     }
 
 
@@ -89,7 +93,7 @@ function Spot(i, j) {
 
     rect(this.i * h, this.j * h, h, h);
   }
-  this.addNeighbors = function (grid) {
+  addNeighbors() {
 
     var i = this.i;
     var j = this.j;
