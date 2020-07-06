@@ -43,7 +43,7 @@ function showImage() {
   pop();
 }
 
-class Spot {
+class Node {
 
   constructor(i,j){
 
@@ -153,7 +153,7 @@ function setup() {
 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
-      grid[i][j] = new Spot(i, j);
+      grid[i][j] = new Node(i, j);
     }
 
   }
