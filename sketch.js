@@ -20,7 +20,6 @@ let startbool = false;
 let moveStart = false;
 let moveEnd = false;
 
-
 let openSet = [];
 let closedSet = [];
 
@@ -140,7 +139,7 @@ class Node {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  slider = createSlider(0, 255, 100);
+  slider = createSlider(-10,-1,-1,-1);
   slider.style('width', '80px');
 
 
@@ -222,6 +221,7 @@ function draw() {
 
 
   let current;
+  if (frameCount %  ( -1 * slider.value()) == 0){
   if (startbool && !done) {
 
     if (openSet.length > 0) {
@@ -295,6 +295,8 @@ function draw() {
 
 
   }
+
+}
   background(255);
   showText();
 
@@ -389,8 +391,9 @@ function showText() {
   text('START NODE', height + height / 2, height / 20);
   text('END NODE', height + height / 2, height / 10);
   text('DIAGONAL PATH', height + height / 2, height / 5);
+  text('SEARCH SPEED', height + height / 2, height / 3.5);
 
-  slider.position(height + height / 2 - 2 * h, height / 3.5);
+  slider.position(height + height / 2 - 3.5 * h, height / 3.5 - .5 * h );
   fill(0, 102, 153);
   text('word', 10, 60);
   fill(0, 102, 153, 51);
