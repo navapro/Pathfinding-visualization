@@ -44,7 +44,7 @@ function showImage() {
 
 class Node {
 
-  constructor(i,j){
+  constructor(i, j) {
 
     this.i = i;
     this.j = j;
@@ -56,7 +56,7 @@ class Node {
     this.previous = undefined;
     this.wall = false;
   }
-    
+
 
   show(colr) {
 
@@ -139,7 +139,7 @@ class Node {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  slider = createSlider(-10,-1,-1,-1);
+  slider = createSlider(-10, -1, -1, -1);
   slider.style('width', '80px');
 
 
@@ -221,82 +221,82 @@ function draw() {
 
 
   let current;
-  if (frameCount %  ( -1 * slider.value()) == 0){
-  if (startbool && !done) {
+  if (frameCount % (-1 * slider.value()) == 0) {
+    if (startbool && !done) {
 
-    if (openSet.length > 0) {
-      let winner = 0;
+      if (openSet.length > 0) {
+        let winner = 0;
 
-      for (let i = 0; i < openSet.length; i++) {
-        if (openSet[i].f < openSet[winner].f) {
-          winner = i;
-        }
-      }
-
-      current = openSet[winner];
-
-      if (current === end) {
-
-        console.log("done !!");
-        done = true;
-        path = [];
-        var temp = current;
-        path.push(temp);
-        while (temp.previous) {
-          path.push(temp.previous);
-          temp = temp.previous;
+        for (let i = 0; i < openSet.length; i++) {
+          if (openSet[i].f < openSet[winner].f) {
+            winner = i;
+          }
         }
 
-        showPath = true;
+        current = openSet[winner];
+
+        if (current === end) {
+
+          console.log("done !!");
+          done = true;
+          path = [];
+          var temp = current;
+          path.push(temp);
+          while (temp.previous) {
+            path.push(temp.previous);
+            temp = temp.previous;
+          }
+
+          showPath = true;
 
 
-      }
+        }
 
-      openSet.splice(winner, 1);
-      closedSet.push(current);
+        openSet.splice(winner, 1);
+        closedSet.push(current);
 
-      var neighbors = current.neighbors;
-      for (let i = 0; i < neighbors.length; i++) {
-        let neighbor = neighbors[i];
+        var neighbors = current.neighbors;
+        for (let i = 0; i < neighbors.length; i++) {
+          let neighbor = neighbors[i];
 
-        if (!closedSet.includes(neighbor) && !neighbor.wall) {
-          let tempG = current.g + neighbor.gg;
+          if (!closedSet.includes(neighbor) && !neighbor.wall) {
+            let tempG = current.g + neighbor.gg;
 
 
-          let newPath = false;
+            let newPath = false;
 
-          if (openSet.includes(neighbor)) {
-            if (tempG < neighbor.g) {
+            if (openSet.includes(neighbor)) {
+              if (tempG < neighbor.g) {
+                neighbor.g = tempG;
+                newPath = true;
+              }
+            } else {
               neighbor.g = tempG;
+              openSet.push(neighbor);
               newPath = true;
             }
-          } else {
-            neighbor.g = tempG;
-            openSet.push(neighbor);
-            newPath = true;
+
+            if (newPath) {
+
+              neighbor.h = heuristic(neighbor, end);
+              neighbor.f = neighbor.g + neighbor.h;
+              neighbor.previous = current;
+            }
           }
 
-          if (newPath) {
-
-            neighbor.h = heuristic(neighbor, end);
-            neighbor.f = neighbor.g + neighbor.h;
-            neighbor.previous = current;
-          }
         }
 
+      } else {
+        // nosolution
+        nosolution = true;
+        // noLoop();
       }
 
-    } else {
-      // nosolution
-      nosolution = true;
-      // noLoop();
+
+
     }
 
-
-
   }
-
-}
   background(255);
   showText();
 
@@ -395,12 +395,12 @@ function showText() {
 
   push()
   fill(200)
-  rect(height + height / 2, height / 2.5,5*h,2*h);
-  rect(height + height / 2, height / 1.95,5*h,2*h);
-  rect(height + height / 2, height /  1.6,5*h,2*h);
+  rect(height + height / 2, height / 2.5, 5 * h, 2 * h);
+  rect(height + height / 2, height / 1.95, 5 * h, 2 * h);
+  rect(height + height / 2, height / 1.6, 5 * h, 2 * h);
   pop()
 
-  slider.position(height + height / 2 - 3.5 * h, height / 3.5 - .5 * h );
+  slider.position(height + height / 2 - 3.5 * h, height / 3.5 - .5 * h);
   fill(0, 102, 153);
   text('word', 10, 60);
   fill(0, 102, 153, 51);
