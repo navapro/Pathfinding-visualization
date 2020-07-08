@@ -393,6 +393,13 @@ function showText() {
   text('DIAGONAL PATH', height + height / 2, height / 5);
   text('SEARCH SPEED', height + height / 2, height / 3.5);
 
+  push()
+  fill(200)
+  rect(height + height / 2, height / 2.5,5*h,2*h);
+  rect(height + height / 2, height / 1.95,5*h,2*h);
+  rect(height + height / 2, height /  1.6,5*h,2*h);
+  pop()
+
   slider.position(height + height / 2 - 3.5 * h, height / 3.5 - .5 * h );
   fill(0, 102, 153);
   text('word', 10, 60);
