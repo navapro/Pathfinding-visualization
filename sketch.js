@@ -400,8 +400,8 @@ function showText() {
   rect(height + height / 2, height / 1.6, 8 * h, 2 * h);
   fill(0);
   textAlign(CENTER);
-  text('SEARCH', height + height / 1.51, height / 2.5 + 1.5 *h);
-  text('CLEAR WALLS', height + height/1.51, height / 1.95 + 1.5 * h);
+  text('SEARCH', height + height / 1.51, height / 2.5 + 1.5 * h);
+  text('CLEAR WALLS', height + height / 1.51, height / 1.95 + 1.5 * h);
   text('RESET', height + height / 1.51, height / 1.6 + 1.5 * h);
   pop()
 
