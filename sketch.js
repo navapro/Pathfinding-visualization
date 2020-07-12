@@ -399,9 +399,10 @@ function showText() {
   rect(height + height / 2, height / 1.95, 8 * h, 2 * h);
   rect(height + height / 2, height / 1.6, 8 * h, 2 * h);
   fill(0);
-  text('SEARCH', height + height / 2, height / 2.5 + 1.5 *h);
-  text('CLEAR WALLS', height + height / 2, height / 1.95 + 1.5 * h);
-  text('RESET', height + height / 2, height / 1.6 + 1.5 * h);
+  textAlign(CENTER);
+  text('SEARCH', height + height / 1.51, height / 2.5 + 1.5 *h);
+  text('CLEAR WALLS', height + height/1.51, height / 1.95 + 1.5 * h);
+  text('RESET', height + height / 1.51, height / 1.6 + 1.5 * h);
   pop()
 
   slider.position(height + height / 2 - 3.5 * h, height / 3.5 - .5 * h);
