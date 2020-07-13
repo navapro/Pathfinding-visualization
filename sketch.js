@@ -434,3 +434,7 @@ function mousePressed() {
 }
 
 // TODO: text size based on h.
+
+function windowResized() { 
+  setup()
+ }
