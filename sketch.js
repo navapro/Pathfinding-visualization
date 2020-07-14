@@ -5,8 +5,8 @@ function heuristic(a, b) {
 }
 let slider;
 let showPath = false;
-let cols = 25;
-let rows = 25;
+let cols = 40;
+let rows = 20;
 let grid = new Array(cols);
 let start;
 let end;
