@@ -5,7 +5,7 @@ function heuristic(a, b) {
 }
 let slider;
 let showPath = false;
-let cols = 50;
+let cols = 25;
 let rows = 25;
 let grid = new Array(cols);
 let start;
@@ -39,7 +39,6 @@ function showImage() {
   } else {
     image(unchecked, height + height / 2 - 2 * h, height / 5 - h / 1.1, h, h);
   }
-  pop();
 }
 
 class Node {
