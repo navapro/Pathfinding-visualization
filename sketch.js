@@ -406,9 +406,7 @@ function showText() {
 
   slider.position(height + height / 2 - 3.5 * h, height / 3.5 - .5 * h);
   fill(0, 102, 153);
-  text('word', 10, 60);
   fill(0, 102, 153, 51);
-  text('word', 10, 90);
 }
 
 function mousePressed() {
