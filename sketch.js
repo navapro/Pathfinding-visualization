@@ -49,7 +49,6 @@ class Node {
     this.j = j;
     this.f = 0;
     this.g = 0;
-    this.gg = 0;
     this.h = 0;
     this.neighbors = [];
     this.previous = undefined;
@@ -259,7 +258,7 @@ function draw() {
           let neighbor = neighbors[i];
 
           if (!closedSet.includes(neighbor) && !neighbor.wall) {
-            let tempG = current.g + neighbor.gg;
+            let tempG = current.g + .5;
 
 
             let newPath = false;
@@ -286,15 +285,9 @@ function draw() {
         }
 
       } else {
-        // nosolution
         nosolution = true;
-        // noLoop();
       }
-
-
-
     }
-
   }
   background(255);
   showText();
