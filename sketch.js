@@ -1,6 +1,6 @@
 function heuristic(a, b) {
-  let d = dist(a.i, a.j, b.i, b.j);
-  // let d = abs(a.i - b.i) + abs(a.j - b.j);
+  // let d = dist(a.i, a.j, b.i, b.j);
+  let d = abs(a.i - b.i) + abs(a.j - b.j);
   return d;
 }
 let slider;
@@ -111,21 +111,17 @@ class Node {
 
       if (i > 0 && j > 0) {
         this.neighbors.push(grid[i - 1][j - 1]);
-        this.neighbors[this.neighbors.length - 1].gg = 0;// change it for diagonal search 
       }
       if (i < cols - 1 && j > 0) {
         this.neighbors.push(grid[i + 1][j - 1]);
-        this.neighbors[this.neighbors.length - 1].gg = 0;// change it for diagonal search 
       }
       if (i > 0 && j < rows - 1) {
         this.neighbors.push(grid[i - 1][j + 1]);
-        this.neighbors[this.neighbors.length - 1].gg = 0;// change it for diagonal search 
       }
       if (i < cols - 1 && j < rows - 1) {
         this.neighbors.push(grid[i + 1][j + 1]);
 
-        this.neighbors[this.neighbors.length - 1].gg = 0;// change it for diagonal search 
-        console.log("this done")
+
 
       }
     }
