@@ -40,7 +40,6 @@ function showImage() {
   }
 }
 
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
