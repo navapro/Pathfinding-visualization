@@ -30,6 +30,23 @@ function preload() {
   unchecked = loadImage("assets/checkbox_unchecked.png");
   checked = loadImage("assets/checkbox_checked.png");
 }
+function setGrid() {
+  for (let i = 0; i < cols; i++) {
+    grid[i] = new Array(rows);
+  }
+
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      grid[i][j] = new Node(i, j);
+    }
+  }
+
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      grid[i][j].addNeighbors(grid);
+    }
+  } 
+}
 function showImage() {
   push();
   imageMode(CORNER);
@@ -47,22 +64,7 @@ function setup() {
   slider.style("width", "80px");
 
   h = height / rows;
-
-  for (let i = 0; i < cols; i++) {
-    grid[i] = new Array(rows);
-  }
-
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      grid[i][j] = new Node(i, j);
-    }
-  }
-
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      grid[i][j].addNeighbors(grid);
-    }
-  }
+  setGrid()
 
   start = grid[0][0];
   end = grid[cols - 1][rows - 1];
