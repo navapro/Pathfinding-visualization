@@ -31,7 +31,6 @@ function preload() {
   checked = loadImage("assets/checkbox_checked.png");
 }
 function showImage() {
-
   push();
   imageMode(CORNER);
   if (checkbox) {
@@ -42,9 +41,7 @@ function showImage() {
 }
 
 class Node {
-
   constructor(i, j) {
-
     this.i = i;
     this.j = j;
     this.f = 0;
@@ -55,43 +52,32 @@ class Node {
     this.wall = false;
   }
 
-
   show(colr) {
-
-
     let hit = collidePointRect(mouseX, mouseY, this.i * h, this.j * h, h, h);
     if (mouseIsPressed && hit && !moveStart && !moveEnd) {
       if (mouseButton === LEFT) {
         // add button and mouse
         if (this.wall && released) {
           this.wall = false;
-
         } else {
-
           this.wall = true;
-
         }
-      }
-      else if (mouseButton === RIGHT) {
+      } else if (mouseButton === RIGHT) {
         this.wall = false;
       }
     }
 
     if (this.wall) {
       fill(0);
-    }
-    else {
-
+    } else {
       fill(colr);
     }
 
-
-    strokeWeight(.4);
+    strokeWeight(0.4);
 
     rect(this.i * h, this.j * h, h, h);
   }
   addNeighbors() {
-
     var i = this.i;
     var j = this.j;
 
@@ -108,7 +94,6 @@ class Node {
       this.neighbors.push(grid[i][j - 1]);
     }
     if (checkbox) {
-
       if (i > 0 && j > 0) {
         this.neighbors.push(grid[i - 1][j - 1]);
       }
@@ -120,42 +105,33 @@ class Node {
       }
       if (i < cols - 1 && j < rows - 1) {
         this.neighbors.push(grid[i + 1][j + 1]);
-
-
-
       }
     }
   }
-
 }
-
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
   slider = createSlider(-10, -1, -1, -1);
-  slider.style('width', '80px');
-
+  slider.style("width", "80px");
 
   h = height / rows;
 
   for (let i = 0; i < cols; i++) {
     grid[i] = new Array(rows);
-
   }
 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       grid[i][j] = new Node(i, j);
     }
-
   }
 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       grid[i][j].addNeighbors(grid);
     }
-
   }
 
   start = grid[0][0];
@@ -165,7 +141,6 @@ function setup() {
   end.wall = false;
 
   openSet.push(start);
-
 }
 
 function move() {
@@ -188,11 +163,23 @@ function mouseCheck() {
 }
 
 function draw() {
-
-
   if (mouseIsPressed && mouseCheck()) {
-    let startTouched = collidePointRect(mouseX, mouseY, start.i * h, start.j * h, h, h);
-    let endTouched = collidePointRect(mouseX, mouseY, end.i * h, end.j * h, h, h);
+    let startTouched = collidePointRect(
+      mouseX,
+      mouseY,
+      start.i * h,
+      start.j * h,
+      h,
+      h
+    );
+    let endTouched = collidePointRect(
+      mouseX,
+      mouseY,
+      end.i * h,
+      end.j * h,
+      h,
+      h
+    );
 
     if (startTouched) {
       moveStart = true;
@@ -212,12 +199,9 @@ function draw() {
     }
   }
 
-
-
   let current;
   if (frameCount % (-1 * slider.value()) == 0) {
     if (startbool && !done) {
-
       if (openSet.length > 0) {
         let winner = 0;
 
@@ -230,7 +214,6 @@ function draw() {
         current = openSet[winner];
 
         if (current === end) {
-
           console.log("done !!");
           done = true;
           path = [];
@@ -242,8 +225,6 @@ function draw() {
           }
 
           showPath = true;
-
-
         }
 
         openSet.splice(winner, 1);
@@ -254,8 +235,7 @@ function draw() {
           let neighbor = neighbors[i];
 
           if (!closedSet.includes(neighbor) && !neighbor.wall) {
-            let tempG = current.g + .5;
-
+            let tempG = current.g + 0.5;
 
             let newPath = false;
 
@@ -271,15 +251,12 @@ function draw() {
             }
 
             if (newPath) {
-
               neighbor.h = heuristic(neighbor, end);
               neighbor.f = neighbor.g + neighbor.h;
               neighbor.previous = current;
             }
           }
-
         }
-
       } else {
         nosolution = true;
       }
@@ -288,7 +265,6 @@ function draw() {
   background(255);
   showText();
 
-
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       grid[i][j].show(color(255));
@@ -296,14 +272,12 @@ function draw() {
   }
   for (let i = 0; i < closedSet.length; i++) {
     if (closedSet[i] != start && closedSet[i] != end) {
-
       closedSet[i].show(color(255, 69, 0));
     }
   }
 
   for (let i = 0; i < openSet.length; i++) {
     if (openSet[i] != start && openSet[i] != end) {
-
       openSet[i].show(color(0, 255, 0));
     }
   }
@@ -313,7 +287,7 @@ function draw() {
 
     noFill();
     stroke("blue");
-    strokeWeight(h / 3)
+    strokeWeight(h / 3);
     beginShape();
 
     for (let i = 0; i < path.length; i++) {
@@ -324,7 +298,6 @@ function draw() {
   }
   end.show(color(255, 0, 255));
   start.show(color(0, 255, 255));
-
 }
 
 function mouseReleased() {
@@ -333,11 +306,9 @@ function mouseReleased() {
   Released = true;
 }
 
-
 function keyPressed() {
   if (key == " ") {
     startbool = true;
-
   }
 
   if (key == "r") {
@@ -356,11 +327,9 @@ function keyPressed() {
 
     openSet.push(start);
   }
-
 }
 
 function showText() {
-
   end.show(color(255, 0, 255));
   start.show(color(0, 255, 255));
 
@@ -376,51 +345,57 @@ function showText() {
   fill(0);
 
   textSize(32);
-  text('START NODE', height + height / 2, height / 20);
-  text('END NODE', height + height / 2, height / 10);
-  text('DIAGONAL PATH', height + height / 2, height / 5);
-  text('SEARCH SPEED', height + height / 2, height / 3.5);
+  text("START NODE", height + height / 2, height / 20);
+  text("END NODE", height + height / 2, height / 10);
+  text("DIAGONAL PATH", height + height / 2, height / 5);
+  text("SEARCH SPEED", height + height / 2, height / 3.5);
 
-  push()
+  push();
   fill(200);
   rect(height + height / 2, height / 2.5, 8 * h, 2 * h);
   rect(height + height / 2, height / 1.95, 8 * h, 2 * h);
   rect(height + height / 2, height / 1.6, 8 * h, 2 * h);
   fill(0);
   textAlign(CENTER);
-  text('SEARCH', height + height / 1.51, height / 2.5 + 1.5 * h);
-  text('CLEAR WALLS', height + height / 1.51, height / 1.95 + 1.5 * h);
-  text('RESET', height + height / 1.51, height / 1.6 + 1.5 * h);
-  pop()
+  text("SEARCH", height + height / 1.51, height / 2.5 + 1.5 * h);
+  text("CLEAR WALLS", height + height / 1.51, height / 1.95 + 1.5 * h);
+  text("RESET", height + height / 1.51, height / 1.6 + 1.5 * h);
+  pop();
 
-  slider.position(height + height / 2 - 3.5 * h, height / 3.5 - .5 * h);
+  slider.position(height + height / 2 - 3.5 * h, height / 3.5 - 0.5 * h);
   fill(0, 102, 153);
   fill(0, 102, 153, 51);
 }
 
 function mousePressed() {
-  if (collidePointRect(mouseX, mouseY, height + height / 2 - 2 * h, height / 5 - h / 1.1, h, h)) {
+  if (
+    collidePointRect(
+      mouseX,
+      mouseY,
+      height + height / 2 - 2 * h,
+      height / 5 - h / 1.1,
+      h,
+      h
+    )
+  ) {
     checkbox = !checkbox;
 
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         grid[i][j].neighbors = [];
       }
-
     }
 
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         grid[i][j].addNeighbors(grid);
       }
-
     }
-
   }
 }
 
 // TODO: text size based on h.
 
-function windowResized() { 
-  setup()
- }
+function windowResized() {
+  setup();
+}
