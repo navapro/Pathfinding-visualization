@@ -144,21 +144,9 @@ function draw() {
         }
 
         current = openSet[winner];
-
         if (current === end) {
-          console.log("done !!");
-          done = true;
-          path = [];
-          var temp = current;
-          path.push(temp);
-          while (temp.previous) {
-            path.push(temp.previous);
-            temp = temp.previous;
-          }
-
-          showPath = true;
+          backTrack(current);
         }
-
         openSet.splice(winner, 1);
         closedSet.push(current);
 
