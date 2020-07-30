@@ -45,7 +45,7 @@ function setGrid() {
     for (let j = 0; j < rows; j++) {
       grid[i][j].addNeighbors(grid);
     }
-  } 
+  }
 }
 function showImage() {
   push();
@@ -64,7 +64,7 @@ function setup() {
   slider.style("width", "80px");
 
   h = height / rows;
-  setGrid()
+  setGrid();
 
   start = grid[0][0];
   end = grid[cols - 1][rows - 1];
