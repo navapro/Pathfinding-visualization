@@ -277,6 +277,8 @@ function mousePressed() {
 }
 
 // TODO: text size based on h.
+// TODO: move all file to src like react
+// TODO: make it look better
 
 function windowResized() {
   setup();
