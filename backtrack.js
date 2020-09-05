@@ -8,5 +8,6 @@ function backTrack(current) {
     path.push(temp.previous);
     temp = temp.previous;
   }
+  
   showPath = true;
 }
