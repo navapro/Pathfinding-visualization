@@ -13,22 +13,23 @@ function showText() {
   showImage();
   fill(0);
 
-  textSize(32);
+  textSize(30);
   text("START NODE", height + height / 2, height / 20);
   text("END NODE", height + height / 2, height / 10);
   text("DIAGONAL PATH", height + height / 2, height / 5);
   text("SEARCH SPEED", height + height / 2, height / 3.5);
 
   push();
-  fill(200);
-  rect(height + height / 2, height / 2.5, 8 * h, 2 * h);
-  rect(height + height / 2, height / 1.95, 8 * h, 2 * h);
-  rect(height + height / 2, height / 1.6, 8 * h, 2 * h);
-  fill(0);
+  // fill(200);
+  // rect(height + height / 2, height / 2.5, 8 * h, 2 * h);
+  // rect(height + height / 2, height / 1.95, 8 * h, 2 * h);
+  // rect(height + height / 2, height / 1.6, 8 * h, 2 * h);
+  // fill(0);
+  textSize(25);
   textAlign(CENTER);
-  text("SEARCH", height + height / 1.51, height / 2.5 + 1.5 * h);
-  text("CLEAR WALLS", height + height / 1.51, height / 1.95 + 1.5 * h);
-  text("RESET", height + height / 1.51, height / 1.6 + 1.5 * h);
+  text("PRESS THE SPACE BAR TO SEARCH", height + height / 1.51, height / 2.5 + 1.5 * h);
+  text("PRESS R TO RESTART", height + height / 1.51, height / 1.6 + 1.5 * h);
+  text("PRESS C TO CLEAR WALLS", height + height / 1.51, height / 1.95 + 1.5 * h);
   pop();
 
   slider.position(height + height / 2 - 3.5 * h, height / 3.5 - 0.5 * h);

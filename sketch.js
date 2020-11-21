@@ -247,6 +247,23 @@ function keyPressed() {
 
     openSet.push(start);
   }
+  if(key == "c"){
+    setup();
+    startbool = false;
+    closedSet = [];
+    openSet = [];
+    path = [];
+    nosolution = false;
+    done = false;
+
+    start = grid[0][0];
+    end = grid[cols - 1][rows - 1];
+
+    start.wall = false;
+    end.wall = false;
+
+    openSet.push(start);
+  }
 }
 
 function mousePressed() {
